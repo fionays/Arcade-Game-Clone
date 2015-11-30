@@ -81,6 +81,9 @@ Player.prototype.resetPlayer = function() {
     this.right = 0;
     this.up = 0;
     this.down = 0;
+
+    this.x = this.initX;
+    this.y = this.initY;
 };
 
 // Now instantiate your objects.
