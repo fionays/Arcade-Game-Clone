@@ -41,16 +41,9 @@ Enemy.prototype.update = function(dt) {
 var Player = function() {
     Entity.call(this);
 
-    this.left = 0;
-    this.right = 0;
-    this.up = 0;
-    this.down = 0
-
     this.sprite = 'images/char-cat-girl.png';
 
     // initial position
-    this.initX = 2 * 101;
-    this.initY = 5 * 83 - 28;
     this.x = 2 * 101;
     this.y = 5 * 83 - 28;
 };
@@ -61,29 +54,21 @@ Player.prototype.update = function() {};
 
 Player.prototype.handleInput = function(input) {
     if (input === 'left' && this.x !== 0) {
-        this.left--;
+        this.x -= 101;
     }else if (input === 'up' && this.y > (83 - 28)) {
-        this.up--;
+        this.y -=  83;
     }else if (input === 'up' && this.y <= (83 - 28)) {
         this.resetPlayer();
     }else if (input === 'right' && this.x !== (4 * 101)) {
-        this.right++;
-    }else if (input === 'down' && this.y !== this.initY){
-        this.down++;
-    }
-
-    this.x = this.initX + (this.left + this.right) * 101;
-    this.y = this.initY + (this.up + this.down) * 83; 
+        this.x += 101;
+    }else if (input === 'down' && this.y !== (5 * 83 - 28)){
+        this.y += 83;
+    } 
 };
 
 Player.prototype.resetPlayer = function() {
-    this.left = 0;
-    this.right = 0;
-    this.up = 0;
-    this.down = 0;
-
-    this.x = this.initX;
-    this.y = this.initY;
+    this.x = 2 * 101;
+    this.y = 5 * 83 - 28;
 };
 
 // Now instantiate your objects.
