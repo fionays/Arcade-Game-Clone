@@ -4,6 +4,15 @@
  * a simple "caching" layer so it will reuse cached images if you attempt
  * to load the same image multiple times.
  */
+
+
+/*******************************
+Questions:
+1. function isReady
+2. resourceCache[url] = false;
+            img.src = url;
+********************************/
+ 
 (function() {
     var resourceCache = {};
     var loading = [];
