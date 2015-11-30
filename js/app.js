@@ -58,7 +58,7 @@ Player.prototype.handleInput = function(input) {
     }else if (input === 'up' && this.y > (83 - 28)) {
         up--;
     }else if (input === 'up' && this.y <= (83 - 28)) {
-        resetPlayer();
+        this.resetPlayer();
     }else if (input === 'right' && this.x !== (4 * 101)) {
         right++;
     }else if (input === 'down' && this.y !== this.initY){

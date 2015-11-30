@@ -107,11 +107,7 @@ var Engine = (function(global) {
             if (enemy.y === player.y) {
                 // If the bug's sprite and player's sprite overlapped larger
                 // than (101 - 51), collision will happen.
-                if (player.x - enemy.x >= 0 && player.x - enemy.x <= 51) {
-                    player.resetPlayer();
-                }
-
-                if (enemy.x - player.x >= 0 && enemy.x - player.x <= 51) {
+                if (Math.abs(player.x - enemy.x) >= 0 && Math.abs(player.x - enemy.x) <= 51) {
                     player.resetPlayer();
                 }
             }
