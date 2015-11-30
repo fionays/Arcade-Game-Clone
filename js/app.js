@@ -22,17 +22,6 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x = (this.x + dt * this.speed) % 1010;
-
-    // Handle the collision with the player
-    if (this.y === player.y) {
-        if (player.x - this.x >= 0 && player.x - this.x <= 50) {
-        resetPlayer();
-        }
-
-        if (this.x - player.x >= 0 && this.x - player.x <= 50) {
-        resetPlayer();
-        }
-    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -77,7 +66,7 @@ Player.prototype.handleInput = function(input) {
     }
 };
 
-function resetPlayer() {
+Player.prototype.resetPlayer = function() {
     left = 0;
     right = 0;
     up = 0;

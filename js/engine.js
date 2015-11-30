@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -97,6 +97,26 @@ var Engine = (function(global) {
         player.update();
     }
 
+    /* This is called by the update function and loops through all the enemy 
+     * objects within the allEnemies array as defined in app.js and it is to 
+     * check collision. 
+     */
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy) {
+        // If this bug and player are on the same row
+            if (enemy.y === player.y) {
+                // If the bug's sprite and player's sprite overlapped larger
+                // than (101 - 51), collision will happen.
+                if (player.x - enemy.x >= 0 && player.x - enemy.x <= 51) {
+                    player.resetPlayer();
+                }
+
+                if (enemy.x - player.x >= 0 && enemy.x - player.x <= 51) {
+                    player.resetPlayer();
+                }
+            }
+        });
+    }
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
      * game tick (or loop of the game engine) because that's how games work -
