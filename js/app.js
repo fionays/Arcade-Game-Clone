@@ -41,12 +41,11 @@ var Player = function() {
     // initial position
     this.initX = 2 * 101;
     this.initY = 5 * 83 - 28;
+    this.x = 2 * 101;
+    this.y = 5 * 83 - 28;
 };
 
-Player.prototype.update = function() {
-    this.x = this.initX + (this.left + this.right) * 101;
-    this.y = this.initY + (this.up + this.down) * 83; 
-};
+Player.prototype.update = function() {};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -64,18 +63,21 @@ Player.prototype.handleInput = function(input) {
     }else if (input === 'down' && this.y !== this.initY){
         this.down++;
     }
+
+    this.x = this.initX + (this.left + this.right) * 101;
+    this.y = this.initY + (this.up + this.down) * 83; 
 };
 
 Player.prototype.resetPlayer = function() {
     this.left = 0;
     this.right = 0;
     this.up = 0;
-    this.down = 0
+    this.down = 0;
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
- var allEnemies = [new Enemy(), new Enemy(), new Enemy(), new Enemy()];
+var allEnemies = [new Enemy(), new Enemy(), new Enemy(), new Enemy()];
 
 // Place the player object in a variable called player
 var player = new Player();
