@@ -31,11 +31,11 @@ Enemy.prototype.render = function() {
 
 // Now write your own player class
 var Player = function() {
-    /* Predefine the variables we'll be using within this scope*/
-    left = 0;
-    right = 0;
-    up = 0;
-    down = 0
+    /* These properties corresponde only to Player's scope*/
+    this.left = 0;
+    this.right = 0;
+    this.up = 0;
+    this.down = 0
 
     this.sprite = 'images/char-cat-girl.png';
     // initial position
@@ -44,8 +44,8 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
-    this.x = this.initX + (left + right) * 101;
-    this.y = this.initY + (up + down) * 83; 
+    this.x = this.initX + (this.left + this.right) * 101;
+    this.y = this.initY + (this.up + this.down) * 83; 
 };
 
 Player.prototype.render = function() {
@@ -54,23 +54,23 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(input) {
     if (input === 'left' && this.x !== 0) {
-        left--;
+        this.left--;
     }else if (input === 'up' && this.y > (83 - 28)) {
-        up--;
+        this.up--;
     }else if (input === 'up' && this.y <= (83 - 28)) {
         this.resetPlayer();
     }else if (input === 'right' && this.x !== (4 * 101)) {
-        right++;
+        this.right++;
     }else if (input === 'down' && this.y !== this.initY){
-        down++;
+        this.down++;
     }
 };
 
 Player.prototype.resetPlayer = function() {
-    left = 0;
-    right = 0;
-    up = 0;
-    down = 0
+    this.left = 0;
+    this.right = 0;
+    this.up = 0;
+    this.down = 0
 };
 
 // Now instantiate your objects.
