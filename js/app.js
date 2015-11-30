@@ -1,8 +1,19 @@
-// Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
+/*Superclass*/
+var Entity = function() {
+    this.sprite = '';
+    this.x = 0;
+    this.y = 0;
+};
+
+// Draw the entity on the screen, required method for game
+Entity.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+/*Enemies our player must avoid, subclass of Entity*/
+var Enemy = function() {
+    Entity.call(this);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -15,6 +26,8 @@ var Enemy = function() {
     this.speed = Math.floor(Math.random() * 301 + 100);
 };
 
+inherit(Enemy);
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -24,20 +37,17 @@ Enemy.prototype.update = function(dt) {
     this.x = (this.x + dt * this.speed) % 1010;
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-// Now write your own player class
+/*Now write your own player class, subclass of Entity*/
 var Player = function() {
-    /* These properties corresponde only to Player's scope*/
+    Entity.call(this);
+
     this.left = 0;
     this.right = 0;
     this.up = 0;
     this.down = 0
 
     this.sprite = 'images/char-cat-girl.png';
+
     // initial position
     this.initX = 2 * 101;
     this.initY = 5 * 83 - 28;
@@ -45,11 +55,9 @@ var Player = function() {
     this.y = 5 * 83 - 28;
 };
 
-Player.prototype.update = function() {};
+inherit(Player);
 
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+Player.prototype.update = function() {};
 
 Player.prototype.handleInput = function(input) {
     if (input === 'left' && this.x !== 0) {
@@ -82,7 +90,6 @@ var allEnemies = [new Enemy(), new Enemy(), new Enemy(), new Enemy()];
 // Place the player object in a variable called player
 var player = new Player();
 
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -95,3 +102,8 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+function inherit (subclass) {
+    subclass.prototype = Object.create(Entity.prototype);
+    subclass.prototype.constructor = subclass;
+}
