@@ -1,9 +1,8 @@
-frontend-nanodegree-arcade-game
+### Classical Arcade Game
 ===============================
+Udacity Front End Nanodegree project 4.
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
-
-for self-checking their submission.
+### How to play the game:
 ===============================
-Instructions on how to play the game:
-Use keyboard "up", "down", "left" and "right" to move the player. 
+Instructions:
+Use keyboard "up", "down", "left" and "right" to move the player. You are dead when touching the bugs.
